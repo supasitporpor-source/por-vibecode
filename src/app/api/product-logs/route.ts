@@ -5,13 +5,13 @@ export async function GET(request: NextRequest) {
   let connection;
   
   try {
-    // สร้าง connection ไปยังฐานข้อมูล
+    // สร้าง connection ไปยังฐานข้อมูลจาก ENV variables
     connection = await mysql.createConnection({
-      host: 'tourwow-db-staging2.ceytnwqqvg3y.ap-southeast-1.rds.amazonaws.com',
-      port: 3306,
-      user: 'vibecode',
-      password: 'tourwowvibecode',
-      database: 'tw_tourwow_db_views'
+      host: process.env.DB_HOST!,
+      port: parseInt(process.env.DB_PORT!),
+      user: process.env.DB_USER!,
+      password: process.env.DB_PASSWORD!,
+      database: process.env.DB_NAME!
     });
 
     // Query ข้อมูลจาก view v_Xqc7k7_product_pool_data_generation_logs
