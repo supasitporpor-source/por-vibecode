@@ -11,8 +11,7 @@ export async function GET(request: NextRequest) {
       port: 3306,
       user: 'vibecode',
       password: 'tourwowvibecode',
-      database: 'tw_tourwow_db_views',
-      ssl: false
+      database: 'tw_tourwow_db_views'
     });
 
     // Query ข้อมูลจาก view v_Xqc7k7_product_pool_data_generation_logs
