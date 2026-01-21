@@ -1,0 +1,27 @@
+SELECT
+  `tw_tourwow_db`.`Xqc7k7_customers`.`id` AS `id`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`team_number` AS `team_number`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`seller_agency_member_id` AS `seller_agency_member_id`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`crm_agency_member_id` AS `crm_agency_member_id`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`customer_code_prefix` AS `customer_code_prefix`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`customer_code_number` AS `customer_code_number`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`customer_code` AS `customer_code`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`name` AS `name`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`birth_date` AS `birth_date`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`phone_number` AS `phone_number`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`address` AS `address`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`email` AS `email`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`facebook_name` AS `facebook_name`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`facebook_url` AS `facebook_url`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`line_name` AS `line_name`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`line_url` AS `line_url`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`instagram` AS `instagram`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`remark` AS `remark`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`first_paid_status_customer_order_installment_count` AS `first_paid_status_customer_order_installment_count`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`last_touchpoint_updated_at` AS `last_touchpoint_updated_at`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`created_at` AS `created_at`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`created_by_agency_member_id` AS `created_by_agency_member_id`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`updated_at` AS `updated_at`,
+  `tw_tourwow_db`.`Xqc7k7_customers`.`updated_by_agency_member_id` AS `updated_by_agency_member_id`
+FROM
+  `tw_tourwow_db`.`Xqc7k7_customers`

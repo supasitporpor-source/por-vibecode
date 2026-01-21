@@ -1,0 +1,28 @@
+SELECT
+  `tw_tourwow_db`.`Xqc7k7_leads`.`id` AS `id`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`lead_code_prefix` AS `lead_code_prefix`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`lead_code_number` AS `lead_code_number`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`lead_code` AS `lead_code`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`pre_customer_phone_number` AS `pre_customer_phone_number`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`customer_id` AS `customer_id`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`customer_name` AS `customer_name`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`customer_phone_number` AS `customer_phone_number`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`customer_email` AS `customer_email`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`customer_chat_url` AS `customer_chat_url`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`customer_chat_url_line` AS `customer_chat_url_line`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`customer_line` AS `customer_line`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`customer_facebook` AS `customer_facebook`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`customer_instagram` AS `customer_instagram`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`customer_other_social_media` AS `customer_other_social_media`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`created_at` AS `created_at`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`created_by_agency_member_id` AS `created_by_agency_member_id`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`created_by_channel` AS `created_by_channel`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`updated_at` AS `updated_at`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`updated_by_agency_member_id` AS `updated_by_agency_member_id`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`updated_by_channel` AS `updated_by_channel`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`first_customer_chat_url_line_created_at` AS `first_customer_chat_url_line_created_at`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`deleted_at` AS `deleted_at`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`deleted_at_as_string` AS `deleted_at_as_string`,
+  `tw_tourwow_db`.`Xqc7k7_leads`.`deleted_by_agency_member_id` AS `deleted_by_agency_member_id`
+FROM
+  `tw_tourwow_db`.`Xqc7k7_leads`

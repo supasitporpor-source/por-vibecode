@@ -1,0 +1,25 @@
+SELECT
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`id` AS `id`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`pipeline_template_id` AS `pipeline_template_id`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`touchpoint_date_config_id` AS `touchpoint_date_config_id`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`touchpoint_name` AS `touchpoint_name`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`touchpoint_ordinal` AS `touchpoint_ordinal`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`touchpoint_default_date_source_day` AS `touchpoint_default_date_source_day`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`touchpoint_script_content` AS `touchpoint_script_content`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`touchpoint_is_main` AS `touchpoint_is_main`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`step_name_1` AS `step_name_1`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`step_name_2` AS `step_name_2`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`step_name_3` AS `step_name_3`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`step_name_4` AS `step_name_4`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`step_name_5` AS `step_name_5`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`step_name_6` AS `step_name_6`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`step_name_7` AS `step_name_7`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`step_name_8` AS `step_name_8`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`step_name_9` AS `step_name_9`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`step_name_10` AS `step_name_10`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`created_at` AS `created_at`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`created_by_agency_member_id` AS `created_by_agency_member_id`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`updated_at` AS `updated_at`,
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`.`updated_by_agency_member_id` AS `updated_by_agency_member_id`
+FROM
+  `tw_tourwow_db`.`Xqc7k7_touchpoint_templates`

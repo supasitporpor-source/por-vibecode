@@ -1,0 +1,1617 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["views"]
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+view v_Xqc7k7_ {
+  id        Int    @default(0) @db.UnsignedInt
+  migration String @db.VarChar(255)
+  batch     Int
+}
+
+view v_Xqc7k7_booking_channels {
+  id          Int    @default(0) @db.UnsignedInt
+  type        String @db.VarChar(100)
+  name        String @db.VarChar(100)
+  team_number Int    @db.UnsignedInt
+}
+
+view v_Xqc7k7_booking_configs {
+  id             Int    @default(0) @db.UnsignedInt
+  type           String @db.VarChar(20)
+  expiry_in_days Int    @db.UnsignedInt
+}
+
+view v_Xqc7k7_booking_files {
+  id                          Int       @default(0) @db.UnsignedInt
+  booking_id                  Int?      @db.UnsignedInt
+  item_file_name              String?   @db.VarChar(100)
+  item_file_size              Int?
+  item_content_type           String?   @db.VarChar(20)
+  item_updated_at             DateTime? @db.DateTime(0)
+  created_at                  DateTime  @db.DateTime(0)
+  created_by_agency_member_id Int       @db.UnsignedInt
+  updated_at                  DateTime  @db.DateTime(0)
+  updated_by_agency_member_id Int       @db.UnsignedInt
+  deleted_at                  DateTime? @db.DateTime(0)
+  deleted_by_agency_member_id Int?      @db.UnsignedInt
+}
+
+view v_Xqc7k7_booking_items {
+  id                   Int     @default(0) @db.UnsignedInt
+  booking_id           Int     @db.UnsignedInt
+  product_room_type_id Int     @db.UnsignedInt
+  amount_per_unit      Decimal @db.Decimal(10, 5)
+  quantity             Int
+  amount               Decimal @db.Decimal(10, 5)
+}
+
+view v_Xqc7k7_booking_priority_statuses {
+  id         Int    @default(0) @db.UnsignedInt
+  name       String @db.VarChar(100)
+  color_code String @db.VarChar(100)
+}
+
+view v_Xqc7k7_booking_queue {
+  id               Int       @default(0) @db.UnsignedInt
+  agency_member_id Int       @db.UnsignedInt
+  checkin_at       DateTime? @db.DateTime(0)
+  queue_pointer    Int       @default(0) @db.TinyInt
+  is_active        Int       @default(0) @db.TinyInt
+}
+
+view v_Xqc7k7_booking_status_trackings {
+  id                          Int       @default(0) @db.UnsignedInt
+  booking_id                  Int       @db.UnsignedInt
+  booking_priority_status_id  Int?      @db.UnsignedInt
+  tracking_status             String    @db.Char(30)
+  interest_level_status       String?   @db.Char(30)
+  seller_by_agency_member_id  Int?      @db.UnsignedInt
+  seller_followed_at          DateTime? @db.DateTime(0)
+  seller_remark               String?   @db.VarChar(1000)
+  is_active                   Boolean   @default(false)
+  created_seconds_diff        Int?      @db.UnsignedInt
+  follow_status_seconds_diff  Int?
+  created_at                  DateTime  @db.DateTime(0)
+  created_by_agency_member_id Int?      @db.UnsignedInt
+  updated_at                  DateTime  @db.DateTime(0)
+  updated_by_agency_member_id Int?      @db.UnsignedInt
+}
+
+/// This view or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+view v_Xqc7k7_bookings {
+  id                               Int       @default(0) @db.UnsignedInt
+  lead_id                          Int       @db.UnsignedInt
+  booking_priority_status_id       Int       @db.UnsignedInt
+  seller_by_agency_member_id       Int?      @db.UnsignedInt
+  country_id                       Int?      @db.UnsignedInt
+  country_sub_unit_id              Int?      @db.UnsignedInt
+  booking_channel_id               Int       @db.UnsignedInt
+  customer_priority_status_id      Int?      @db.UnsignedInt
+  customer_priority_status_date    DateTime? @db.Date
+  customer_priority_status_qty     Int?
+  booking_code_prefix              String    @db.Char(10)
+  booking_code_number              Int       @db.UnsignedInt
+  booking_code                     String    @db.Char(20)
+  booking_status                   String    @db.Char(30)
+  booking_key                      String    @db.Char(7)
+  product_pool_snapshot            Json?
+  amount                           Decimal?  @db.Decimal(10, 5)
+  pre_customer_phone_number        String?   @db.VarChar(200)
+  customer_name                    String    @db.VarChar(200)
+  customer_phone_number            String?   @db.VarChar(10)
+  customer_email                   String?   @db.VarChar(100)
+  customer_line                    String?   @db.VarChar(100)
+  customer_chat_url                String?   @db.VarChar(200)
+  customer_chat_url_line           String?   @db.VarChar(200)
+  customer_remark                  String?   @db.VarChar(1000)
+  reject_count                     Int       @default(0) @db.UnsignedInt
+  reject_status_seconds_diff       Int?      @db.UnsignedInt
+  success_status_seconds_diff      Int?      @db.UnsignedInt
+  first_viewed_seconds_diff        Int?      @db.UnsignedInt
+  first_viewed_at                  DateTime? @db.DateTime(0)
+  first_viewed_by_agency_member_id Int?      @db.UnsignedInt
+  last_viewed_at                   DateTime? @db.DateTime(0)
+  last_viewed_by_agency_member_id  Int?      @db.UnsignedInt
+  created_at                       DateTime  @db.DateTime(0)
+  created_by_agency_member_id      Int?      @db.UnsignedInt
+  created_by_channel               String    @db.Char(10)
+  updated_at                       DateTime  @db.DateTime(0)
+  updated_by_agency_member_id      Int?      @db.UnsignedInt
+  updated_by_channel               String    @db.Char(10)
+  expired_at                       DateTime? @db.DateTime(0)
+  deleted_at                       DateTime? @db.DateTime(0)
+  deleted_by_agency_member_id      Int?      @db.UnsignedInt
+}
+
+view v_Xqc7k7_bookings_has_campaigns {
+  id          Int @default(0) @db.UnsignedInt
+  booking_id  Int @db.UnsignedInt
+  campaign_id Int @db.UnsignedInt
+}
+
+view v_Xqc7k7_campaigns {
+  id   Int    @default(0) @db.UnsignedInt
+  name String @db.VarChar(100)
+}
+
+view v_Xqc7k7_customer_order_installment_files {
+  id                            Int       @default(0) @db.UnsignedInt
+  customer_order_installment_id Int       @db.UnsignedInt
+  order_id                      Int       @db.UnsignedInt
+  item_file_name                String?   @db.VarChar(100)
+  item_file_size                Int?
+  item_content_type             String?   @db.VarChar(20)
+  item_updated_at               DateTime? @db.DateTime(0)
+  created_at                    DateTime  @db.DateTime(0)
+  created_by_agency_member_id   Int       @db.UnsignedInt
+  updated_at                    DateTime  @db.DateTime(0)
+  updated_by_agency_member_id   Int       @db.UnsignedInt
+  deleted_at                    DateTime? @db.DateTime(0)
+  deleted_by_agency_member_id   Int?      @db.UnsignedInt
+  file_type_slug                String    @db.VarChar(30)
+}
+
+view v_Xqc7k7_customer_order_installments {
+  id                                  Int       @default(0) @db.UnsignedInt
+  order_id                            Int       @db.UnsignedInt
+  ordinal                             Int       @db.UnsignedInt
+  status                              String    @db.Char(20)
+  due_date                            DateTime? @db.Date
+  amount                              Decimal   @db.Decimal(13, 5)
+  payment_is_in_progress              Boolean   @default(false)
+  customer_order_installment_snapshot Json?
+}
+
+view v_Xqc7k7_customer_order_installments_has_payments {
+  customer_order_installment_id Int @db.UnsignedInt
+  payment_id                    Int @db.UnsignedInt
+}
+
+view v_Xqc7k7_customer_priority_statuses {
+  id   Int    @default(0) @db.UnsignedInt
+  name String @db.VarChar(100)
+}
+
+view v_Xqc7k7_customer_profile_files {
+  id                          Int       @default(0) @db.UnsignedInt
+  customer_id                 Int       @db.UnsignedInt
+  item_file_name              String?   @db.VarChar(100)
+  item_file_size              Int?
+  item_content_type           String?   @db.VarChar(20)
+  item_updated_at             DateTime? @db.DateTime(0)
+  created_at                  DateTime  @db.DateTime(0)
+  created_by_agency_member_id Int?      @db.UnsignedInt
+  deleted_at                  DateTime? @db.DateTime(0)
+  deleted_by_agency_member_id Int?      @db.UnsignedInt
+}
+
+view v_Xqc7k7_customers {
+  id                                                 Int       @default(0) @db.UnsignedInt
+  team_number                                        Int?      @db.UnsignedTinyInt
+  seller_agency_member_id                            Int?      @db.UnsignedInt
+  crm_agency_member_id                               Int?      @db.UnsignedInt
+  customer_code_prefix                               String    @db.Char(10)
+  customer_code_number                               Int       @db.UnsignedInt
+  customer_code                                      String    @db.Char(20)
+  name                                               String    @db.VarChar(100)
+  birth_date                                         DateTime? @db.Date
+  phone_number                                       String    @db.VarChar(20)
+  address                                            String?   @db.VarChar(100)
+  email                                              String?   @db.VarChar(100)
+  facebook_name                                      String?   @db.VarChar(100)
+  facebook_url                                       String?   @db.VarChar(100)
+  line_name                                          String?   @db.VarChar(100)
+  line_url                                           String?   @db.VarChar(100)
+  instagram                                          String?   @db.VarChar(100)
+  remark                                             String?   @db.VarChar(500)
+  first_paid_status_customer_order_installment_count Int       @default(0)
+  last_touchpoint_updated_at                         DateTime? @db.DateTime(0)
+  created_at                                         DateTime  @db.DateTime(0)
+  created_by_agency_member_id                        Int?      @db.UnsignedInt
+  updated_at                                         DateTime  @db.DateTime(0)
+  updated_by_agency_member_id                        Int?      @db.UnsignedInt
+}
+
+view v_Xqc7k7_external_pre_product_sources {
+  id          Int    @default(0) @db.UnsignedInt
+  supplier_id Int    @db.UnsignedInt
+  name        String @db.VarChar(50)
+  api_url     String @db.VarChar(255)
+  api_headers Json?
+}
+
+view v_Xqc7k7_external_pre_products {
+  id                                    Int       @default(0) @db.UnsignedInt
+  supplier_id                           Int       @db.UnsignedInt
+  product_tour_code                     String    @db.VarChar(50)
+  product_status                        String?   @db.Char(30)
+  product_name                          String    @db.VarChar(200)
+  product_duration_day                  Int
+  product_duration_night                Int
+  product_duration_day_and_night        String    @db.VarChar(10)
+  product_meal_amount                   Int?
+  product_has_meal_on_board             Boolean?
+  product_hotel_star                    Int?
+  product_day_detail                    Json?
+  product_pdf_url                       String    @db.VarChar(200)
+  product_word_url                      String    @db.VarChar(200)
+  product_is_active                     Boolean
+  period_start_at                       DateTime? @db.Date
+  period_end_at                         DateTime? @db.Date
+  period_price_adult_double             Decimal?  @db.Decimal(10, 2)
+  period_deposit                        Decimal?  @db.Decimal(10, 2)
+  period_commission                     Decimal?  @db.Decimal(10, 2)
+  period_commission_company             Decimal?  @db.Decimal(10, 2)
+  period_commission_seller              Decimal?  @db.Decimal(10, 2)
+  period_quantity                       Int
+  period_quantity_remaining             Int
+  period_go_airport_arrival_1           String?   @db.VarChar(100)
+  period_go_airport_arrival_2           String?   @db.VarChar(100)
+  period_go_airport_departure_1         String?   @db.VarChar(100)
+  period_go_airport_departure_2         String?   @db.VarChar(100)
+  period_go_flight_number_departure_1   String?   @db.VarChar(50)
+  period_go_flight_number_departure_2   String?   @db.VarChar(50)
+  period_go_flight_time_arrival_1       String?   @db.VarChar(50)
+  period_go_flight_time_arrival_2       String?   @db.VarChar(50)
+  period_go_flight_time_departure_1     String?   @db.VarChar(50)
+  period_go_flight_time_departure_2     String?   @db.VarChar(50)
+  period_back_airport_arrival_1         String?   @db.VarChar(100)
+  period_back_airport_arrival_2         String?   @db.VarChar(100)
+  period_back_airport_departure_1       String?   @db.VarChar(100)
+  period_back_airport_departure_2       String?   @db.VarChar(100)
+  period_back_flight_number_departure_1 String?   @db.VarChar(50)
+  period_back_flight_number_departure_2 String?   @db.VarChar(50)
+  period_back_flight_time_arrival_1     String?   @db.VarChar(50)
+  period_back_flight_time_arrival_2     String?   @db.VarChar(50)
+  period_back_flight_time_departure_1   String?   @db.VarChar(50)
+  period_back_flight_time_departure_2   String?   @db.VarChar(50)
+  count_period                          Int
+  original_data                         Json
+  created_at                            DateTime  @db.DateTime(0)
+  updated_at                            DateTime  @db.DateTime(0)
+}
+
+view v_Xqc7k7_external_product_period_sources {
+  id          Int    @default(0) @db.UnsignedInt
+  supplier_id Int    @db.UnsignedInt
+  name        String @db.VarChar(50)
+  api_url     String @db.VarChar(255)
+  api_headers Json?
+}
+
+view v_Xqc7k7_external_product_periods {
+  supplier_id                       Int      @db.UnsignedInt
+  product_tour_code                 String   @db.VarChar(50)
+  has_matching_internal_product     Boolean  @default(false)
+  product_country                   Json?
+  product_name                      String?  @db.VarChar(100)
+  period_start_at                   DateTime @db.Date
+  period_end_at                     DateTime @db.Date
+  period_duration                   String   @db.VarChar(10)
+  period_duration_day               Int
+  period_duration_night             Int
+  period_price_adult_double         Decimal  @db.Decimal(10, 2)
+  period_price_adult_double_compare Decimal? @db.Decimal(10, 2)
+  period_commission                 Decimal  @db.Decimal(10, 2)
+  period_commission_company         Decimal  @db.Decimal(10, 2)
+  period_commission_seller          Decimal  @db.Decimal(10, 2)
+  period_quantity_remaining         Int
+  original_data                     Json
+  created_at                        DateTime @db.DateTime(0)
+}
+
+view v_Xqc7k7_failed_jobs {
+  id         BigInt   @default(0) @db.UnsignedBigInt
+  connection String   @db.Text
+  queue      String   @db.Text
+  payload    String   @db.LongText
+  exception  String   @db.LongText
+  failed_at  DateTime @default(now()) @db.Timestamp(0)
+}
+
+view v_Xqc7k7_finance_backoffice_login_logs {
+  id                          Int      @default(0) @db.UnsignedInt
+  login_status                String   @db.Char(30)
+  operating_system            String   @db.VarChar(100)
+  use_desktop                 Int      @db.TinyInt
+  ip_address                  String   @db.VarChar(45)
+  created_by_agency_member_id Int      @db.UnsignedInt
+  created_at                  DateTime @db.DateTime(0)
+}
+
+view v_Xqc7k7_first_product_pool_has_product_pools {
+  product_pool_id       Int @db.UnsignedInt
+  first_product_pool_id Int @db.UnsignedInt
+}
+
+view v_Xqc7k7_jobs {
+  id           BigInt @default(0) @db.UnsignedBigInt
+  queue        String @db.VarChar(255)
+  payload      String @db.LongText
+  attempts     Int    @db.UnsignedTinyInt
+  reserved_at  Int?   @db.UnsignedInt
+  available_at Int    @db.UnsignedInt
+  created_at   Int    @db.UnsignedInt
+}
+
+view v_Xqc7k7_keyword_categories {
+  id      Int    @default(0) @db.UnsignedInt
+  slug    String @db.Char(30)
+  name_th String @db.Char(30)
+  name_en String @db.Char(30)
+}
+
+view v_Xqc7k7_keyword_has_keyword_categories {
+  keyword_id          Int @db.UnsignedInt
+  keyword_category_id Int @db.UnsignedInt
+}
+
+view v_Xqc7k7_keyword_has_location_image_files {
+  id                    Int     @default(0) @db.UnsignedInt
+  keyword_id            Int     @db.UnsignedInt
+  keyword_image_file_id Int     @db.UnsignedInt
+  ordinal               Int     @db.UnsignedInt
+  alt_text              String? @db.VarChar(100)
+}
+
+view v_Xqc7k7_keyword_image_files {
+  id                Int       @default(0) @db.UnsignedInt
+  item_file_name    String    @db.VarChar(100)
+  item_content_type String    @db.VarChar(100)
+  item_file_size    Int
+  item_updated_at   DateTime? @db.DateTime(0)
+}
+
+view v_Xqc7k7_keyword_types {
+  id   Int    @default(0) @db.UnsignedInt
+  slug String @db.Char(20)
+}
+
+/// This view or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+view v_Xqc7k7_keywords {
+  id                          Int      @default(0) @db.UnsignedInt
+  keyword_type_id             Int      @db.UnsignedInt
+  country_id                  Int      @db.UnsignedInt
+  country_sub_unit_id         Int      @db.UnsignedInt
+  display_name                String   @db.VarChar(100)
+  name_th                     String   @db.VarChar(100)
+  name_en                     String   @db.VarChar(100)
+  local_name                  String?  @db.VarChar(100)
+  alternate_name_1            String?  @db.VarChar(100)
+  alternate_name_2            String?  @db.VarChar(100)
+  alternate_name_3            String?  @db.VarChar(100)
+  google_map_location         String?  @db.VarChar(200)
+  video_url                   String?  @db.VarChar(200)
+  has_description             Boolean  @default(false)
+  description                 String?  @db.LongText
+  is_active                   Boolean  @default(true)
+  created_at                  DateTime @db.DateTime(0)
+  created_by_agency_member_id Int      @db.UnsignedInt
+  updated_at                  DateTime @db.DateTime(0)
+  updated_by_agency_member_id Int      @db.UnsignedInt
+  display_name_as_thai_sort   String?  @db.VarChar(102)
+}
+
+/// This view or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+view v_Xqc7k7_leads {
+  id                                      Int       @default(0) @db.UnsignedInt
+  lead_code_prefix                        String    @db.Char(10)
+  lead_code_number                        Int       @db.UnsignedInt
+  lead_code                               String    @db.Char(20)
+  pre_customer_phone_number               String?   @db.VarChar(200)
+  customer_id                             Int?      @db.UnsignedInt
+  customer_name                           String    @db.VarChar(200)
+  customer_phone_number                   String?   @db.VarChar(10)
+  customer_email                          String?   @db.VarChar(100)
+  customer_chat_url                       String?   @db.VarChar(200)
+  customer_chat_url_line                  String?   @db.VarChar(200)
+  customer_line                           String?   @db.VarChar(100)
+  customer_facebook                       String?   @db.VarChar(100)
+  customer_instagram                      String?   @db.VarChar(100)
+  customer_other_social_media             String?   @db.VarChar(100)
+  created_at                              DateTime  @db.DateTime(0)
+  created_by_agency_member_id             Int?      @db.UnsignedInt
+  created_by_channel                      String    @db.Char(10)
+  updated_at                              DateTime  @db.DateTime(0)
+  updated_by_agency_member_id             Int?      @db.UnsignedInt
+  updated_by_channel                      String    @db.Char(10)
+  first_customer_chat_url_line_created_at DateTime? @db.DateTime(0)
+  deleted_at                              DateTime? @db.DateTime(0)
+  deleted_at_as_string                    String?   @db.Char(19)
+  deleted_by_agency_member_id             Int?      @db.UnsignedInt
+}
+
+view v_Xqc7k7_member_albums {
+  id                          Int       @default(0) @db.UnsignedInt
+  order_id                    Int       @db.UnsignedInt
+  member_album_key            String    @db.Char(6)
+  name                        String    @db.VarChar(100)
+  hidden_at                   DateTime? @db.DateTime(0)
+  hidden_by_agency_member_id  Int?      @db.UnsignedInt
+  created_at                  DateTime  @db.DateTime(0)
+  created_by_agency_member_id Int       @db.UnsignedInt
+  deleted_at                  DateTime? @db.DateTime(0)
+  deleted_by_agency_member_id Int?      @db.UnsignedInt
+}
+
+view v_Xqc7k7_member_credentials {
+  id             Int       @default(0) @db.UnsignedInt
+  member_id      Int       @db.UnsignedInt
+  username       String    @db.VarChar(150)
+  password       String    @db.VarChar(60)
+  otp_temp_key   String?   @db.Char(32)
+  token_temp_key String?   @db.Char(6)
+  created_at     DateTime  @db.DateTime(0)
+  updated_at     DateTime  @db.DateTime(0)
+  deleted_at     DateTime? @db.DateTime(0)
+}
+
+view v_Xqc7k7_member_files {
+  id                          Int       @default(0) @db.UnsignedInt
+  member_album_id             Int       @db.UnsignedInt
+  item_file_name              String?   @db.VarChar(100)
+  item_file_size              Int?
+  item_content_type           String?   @db.VarChar(20)
+  item_updated_at             DateTime? @db.DateTime(0)
+  hidden_at                   DateTime? @db.DateTime(0)
+  hidden_by_agency_member_id  Int?      @db.UnsignedInt
+  created_at                  DateTime  @db.DateTime(0)
+  created_by_agency_member_id Int       @db.UnsignedInt
+  deleted_at                  DateTime? @db.DateTime(0)
+  deleted_by_agency_member_id Int?      @db.UnsignedInt
+}
+
+view v_Xqc7k7_members {
+  id           Int      @default(0) @db.UnsignedInt
+  customer_id  Int?     @db.UnsignedInt
+  member_key   String   @db.Char(6)
+  email        String?  @db.VarChar(150)
+  phone_number String?  @db.VarChar(100)
+  display_name String?  @db.VarChar(150)
+  is_active    Int      @default(1) @db.TinyInt
+  created_at   DateTime @db.DateTime(0)
+  updated_at   DateTime @db.DateTime(0)
+}
+
+view v_Xqc7k7_members_has_member_albums {
+  member_id       Int @db.UnsignedInt
+  member_album_id Int @db.UnsignedInt
+}
+
+view v_Xqc7k7_members_has_member_files {
+  member_id      Int @db.UnsignedInt
+  member_file_id Int @db.UnsignedInt
+}
+
+view v_Xqc7k7_migrations {
+  id        Int    @default(0) @db.UnsignedInt
+  migration String @db.VarChar(255)
+  batch     Int
+}
+
+view v_Xqc7k7_omise_payment_events {
+  id                      Int      @default(0) @db.UnsignedInt
+  payment_id              Int      @db.UnsignedInt
+  parent_payment_event_id Int?     @db.UnsignedInt
+  event_type              String   @db.VarChar(40)
+  amount                  Decimal  @db.Decimal(10, 2)
+  fee                     Decimal  @db.Decimal(10, 2)
+  fee_vat                 Decimal  @db.Decimal(10, 2)
+  charge_id               String   @db.VarChar(100)
+  charge                  Json
+  promptpay_source        Json?
+  mobile_banking_source   Json?
+  card_installment_source Json?
+  card                    Json?
+  transaction             Json
+  created_at              DateTime @db.DateTime(0)
+}
+
+view v_Xqc7k7_order_files {
+  id                          Int       @default(0) @db.UnsignedInt
+  order_id                    Int       @db.UnsignedInt
+  item_file_name              String?   @db.VarChar(100)
+  item_file_size              Int?
+  item_content_type           String?   @db.VarChar(20)
+  item_updated_at             DateTime? @db.DateTime(0)
+  created_at                  DateTime  @db.DateTime(0)
+  created_by_agency_member_id Int       @db.UnsignedInt
+  updated_at                  DateTime  @db.DateTime(0)
+  updated_by_agency_member_id Int       @db.UnsignedInt
+  deleted_at                  DateTime? @db.DateTime(0)
+  deleted_by_agency_member_id Int?      @db.UnsignedInt
+  file_type_slug              String    @db.VarChar(30)
+}
+
+view v_Xqc7k7_order_has_pins {
+  id                         Int      @default(0) @db.UnsignedInt
+  order_id                   Int      @db.UnsignedInt
+  pinned_by_agency_member_id Int      @db.UnsignedInt
+  pinned_at                  DateTime @db.DateTime(0)
+}
+
+view v_Xqc7k7_order_items {
+  id                              Int     @default(0) @db.UnsignedInt
+  order_id                        Int     @db.UnsignedInt
+  product_room_type_id            Int?    @db.UnsignedInt
+  product_add_on_type_id          Int?    @db.UnsignedInt
+  amount_per_unit                 Decimal @db.Decimal(13, 5)
+  quantity                        Int
+  amount                          Decimal @db.Decimal(13, 5)
+  source                          String  @default("pro_product_1dot6") @db.VarChar(20)
+  is_include_supplier_installment Boolean @default(true)
+}
+
+view v_Xqc7k7_order_period_generation_report_files {
+  id                          Int       @default(0) @db.UnsignedInt
+  item_file_name              String?   @db.VarChar(100)
+  item_file_size              Int?
+  item_content_type           String?   @db.VarChar(20)
+  item_updated_at             DateTime? @db.DateTime(0)
+  created_at                  DateTime  @db.DateTime(0)
+  created_by_agency_member_id Int       @db.UnsignedInt
+  deleted_at                  DateTime? @db.DateTime(0)
+  deleted_by_agency_member_id Int?      @db.UnsignedInt
+}
+
+view v_Xqc7k7_order_period_generation_reports {
+  id                                     Int       @default(0) @db.UnsignedInt
+  order_period_generation_report_file_id Int       @db.UnsignedInt
+  period_start_at                        DateTime  @db.DateTime(0)
+  period_end_at                          DateTime  @db.DateTime(0)
+  created_at                             DateTime  @db.DateTime(0)
+  created_by_agency_member_id            Int       @db.UnsignedInt
+  deleted_at                             DateTime? @db.DateTime(0)
+  deleted_by_agency_member_id            Int?      @db.UnsignedInt
+}
+
+/// This view or at least one of its fields has comments in the database, and requires an additional setup for migrations: Read more: https://pris.ly/d/database-comments
+view v_Xqc7k7_orders {
+  id                                        Int       @default(0) @db.UnsignedInt
+  booking_id                                Int?      @db.UnsignedInt
+  agcy_agency_id                            Int       @db.UnsignedInt
+  customer_id                               Int?      @db.UnsignedInt
+  parent_order_id                           Int?      @db.UnsignedInt
+  team_number                               Int?      @db.UnsignedTinyInt
+  seller_agency_member_id                   Int?      @db.UnsignedInt
+  crm_agency_member_id                      Int?      @db.UnsignedInt
+  is_old_customer                           Boolean   @default(false)
+  order_code_prefix                         String    @db.Char(10)
+  order_code_number                         Int       @db.UnsignedInt
+  order_code                                String    @db.Char(20)
+  order_status                              String    @db.Char(30)
+  order_key                                 String?   @db.Char(7)
+  order_temp_key                            String?   @db.Char(7)
+  order_passport_key                        String?   @db.Char(10)
+  order_visa_key                            String?   @db.Char(10)
+  product_owner_supplier_id                 Int       @db.UnsignedInt
+  product_id                                Int       @db.UnsignedInt
+  product_period_id                         Int?      @db.UnsignedInt
+  product_snapshot                          Json
+  product_period_snapshot                   Json
+  product_pool_snapshot                     Json?
+  amount                                    Decimal   @db.Decimal(13, 5)
+  discount                                  Decimal?  @db.Decimal(13, 5)
+  amount_with_discount                      Decimal   @db.Decimal(13, 5)
+  use_vat                                   Boolean
+  use_visa                                  Boolean   @default(false)
+  vat_percentage                            Decimal   @db.Decimal(13, 5)
+  vat                                       Decimal   @db.Decimal(13, 5)
+  net_amount                                Decimal   @db.Decimal(13, 5)
+  commission_company                        Decimal   @db.Decimal(13, 5)
+  commission_seller                         Decimal   @db.Decimal(13, 5)
+  extra_commission                          Decimal?  @db.Decimal(13, 5)
+  extra_discount                            Decimal?  @db.Decimal(13, 5)
+  extra_commission_per_unit                 Decimal?  @db.Decimal(13, 5)
+  extra_commission_unit                     Int?      @db.UnsignedInt
+  extra_discount_per_unit                   Decimal?  @db.Decimal(13, 5)
+  extra_discount_unit                       Int?      @db.UnsignedInt
+  supplier_income                           Decimal?  @db.Decimal(10, 2)
+  supplier_commission_vat_percentage        Decimal?  @db.Decimal(10, 2)
+  supplier_commission_vat                   Decimal?  @db.Decimal(10, 2)
+  supplier_commission                       Decimal?  @db.Decimal(10, 2)
+  supplier_commission_with_vat              Decimal?  @db.Decimal(10, 2)
+  supplier_commission_with_income           Decimal?  @db.Decimal(10, 2)
+  supplier_commission_with_income_with_vat  Decimal?  @db.Decimal(10, 2)
+  supplier_commission_with_income_vat       Decimal?  @db.Decimal(10, 2)
+  supplier_use_withholding_tax              Boolean   @default(false)
+  supplier_withholding_tax_percentage       Decimal?  @db.Decimal(10, 2)
+  supplier_withholding_tax                  Decimal?  @db.Decimal(10, 2)
+  sum_supplier_order_installment_amount     Decimal   @db.Decimal(13, 5)
+  sum_customer_order_installment_amount     Decimal   @db.Decimal(13, 5)
+  customer_name                             String    @db.VarChar(100)
+  customer_phone_number                     String    @db.VarChar(20)
+  customer_email                            String?   @db.VarChar(100)
+  customer_facebook                         String?   @db.VarChar(100)
+  customer_line                             String?   @db.VarChar(100)
+  customer_instagram                        String?   @db.VarChar(100)
+  customer_remark                           String?   @db.VarChar(500)
+  review_star                               Int?      @db.UnsignedTinyInt
+  review_note                               String?   @db.VarChar(2000)
+  note                                      String?   @db.VarChar(1000)
+  visa_note                                 String?   @db.VarChar(1000)
+  passport_downloaded_count                 Int       @default(0)
+  visa_downloaded_count                     Int       @default(0)
+  first_seller_agency_member_id             Int?      @db.UnsignedInt
+  created_at                                DateTime  @db.DateTime(0)
+  created_by_agency_member_id               Int?      @db.UnsignedInt
+  updated_at                                DateTime  @db.DateTime(0)
+  updated_by_agency_member_id               Int?      @db.UnsignedInt
+  passport_approved_at                      DateTime? @db.DateTime(0)
+  passport_expired_at                       DateTime? @db.DateTime(0)
+  passport_approved_by_agency_member_id     Int?      @db.UnsignedInt
+  visa_approved_at                          DateTime? @db.DateTime(0)
+  visa_expired_at                           DateTime? @db.DateTime(0)
+  visa_approved_by_agency_member_id         Int?      @db.UnsignedInt
+  sent_file_to_supplier_at                  DateTime? @db.DateTime(0)
+  sent_file_to_supplier_by_agency_member_id Int?      @db.UnsignedInt
+  approved_at                               DateTime? @db.DateTime(0)
+  approved_by_agency_member_id              Int?      @db.UnsignedInt
+  completed_at                              DateTime? @db.DateTime(0)
+  completed_by_agency_member_id             Int?      @db.UnsignedInt
+  completed_traveled_at                     DateTime? @db.DateTime(0)
+  completed_traveled_by_agency_member_id    Int?      @db.UnsignedInt
+  reviewed_at                               DateTime? @db.DateTime(0)
+  reviewed_by_agency_member_id              Int?      @db.UnsignedInt
+  waiting_canceled_at                       DateTime? @db.DateTime(0)
+  waiting_canceled_by_agency_member_id      Int?      @db.UnsignedInt
+  canceled_at                               DateTime? @db.DateTime(0)
+  canceled_by_agency_member_id              Int?      @db.UnsignedInt
+  deleted_at                                DateTime? @db.DateTime(0)
+  deleted_at_as_string                      String?   @db.Char(19)
+  deleted_by_agency_member_id               Int?      @db.UnsignedInt
+}
+
+view v_Xqc7k7_page_not_found_logs {
+  id            Int      @default(0) @db.UnsignedInt
+  url_path      String   @db.VarChar(200)
+  visited_count Int      @default(0)
+  created_at    DateTime @db.DateTime(0)
+  updated_at    DateTime @db.DateTime(0)
+}
+
+view v_Xqc7k7_payments {
+  id                Int       @default(0) @db.UnsignedInt
+  payment_status    String    @db.Char(20)
+  payment_channel   String    @db.VarChar(20)
+  payment_method    String    @db.VarChar(20)
+  original_amount   Decimal   @db.Decimal(13, 5)
+  tw_fee            Decimal   @db.Decimal(13, 5)
+  tw_fee_percentage Decimal   @db.Decimal(13, 5)
+  amount            Decimal   @db.Decimal(13, 5)
+  paid_at           DateTime? @db.DateTime(0)
+  created_at        DateTime  @db.DateTime(0)
+  updated_at        DateTime  @db.DateTime(0)
+}
+
+view v_Xqc7k7_pinned_double_promotion_configs {
+  id         Int @default(0) @db.UnsignedInt
+  product_id Int @db.UnsignedInt
+  ordinal    Int @db.UnsignedInt
+}
+
+view v_Xqc7k7_pipeline_files {
+  id                Int       @default(0) @db.UnsignedInt
+  item_file_name    String?   @db.VarChar(100)
+  item_file_size    Int?
+  item_content_type String?   @db.VarChar(20)
+  item_updated_at   DateTime? @db.DateTime(0)
+}
+
+view v_Xqc7k7_pipeline_logs {
+  id                          Int      @default(0) @db.UnsignedInt
+  pipeline_template_id        Int      @db.UnsignedInt
+  slug                        String   @db.VarChar(30)
+  customers_count             Int      @db.UnsignedInt
+  condition                   Json
+  created_at                  DateTime @db.DateTime(0)
+  created_by_agency_member_id Int      @db.UnsignedInt
+}
+
+view v_Xqc7k7_pipeline_templates {
+  id                          Int      @default(0) @db.UnsignedInt
+  pipeline_type_id            Int      @db.UnsignedInt
+  pipeline_file_id            Int?     @db.UnsignedInt
+  name                        String   @db.VarChar(100)
+  created_at                  DateTime @db.DateTime(0)
+  created_by_agency_member_id Int      @db.UnsignedInt
+  updated_at                  DateTime @db.DateTime(0)
+  updated_by_agency_member_id Int      @db.UnsignedInt
+}
+
+view v_Xqc7k7_pipeline_types {
+  id   Int     @default(0) @db.UnsignedInt
+  name String  @db.VarChar(100)
+  note String? @db.VarChar(100)
+}
+
+view v_Xqc7k7_pipelines {
+  id                          Int       @default(0) @db.UnsignedInt
+  team_number                 Int?      @db.UnsignedTinyInt
+  seller_agency_member_id     Int?      @db.UnsignedInt
+  buddy_agency_member_id      Int?      @db.UnsignedInt
+  pipeline_type_id            Int       @db.UnsignedInt
+  pipeline_file_id            Int?      @db.UnsignedInt
+  order_id                    Int?      @db.UnsignedInt
+  customer_id                 Int       @db.UnsignedInt
+  survey_id                   Int?      @db.UnsignedInt
+  pipeline_log_id             Int?      @db.UnsignedInt
+  name                        String    @db.VarChar(100)
+  status                      String    @db.Char(30)
+  total_touchpoint            Int       @db.UnsignedInt
+  total_success_touchpoint    Int       @db.UnsignedInt
+  created_at                  DateTime  @db.DateTime(0)
+  created_by_agency_member_id Int?      @db.UnsignedInt
+  updated_at                  DateTime  @db.DateTime(0)
+  updated_by_agency_member_id Int?      @db.UnsignedInt
+  deleted_at                  DateTime? @db.DateTime(0)
+  deleted_by_agency_member_id Int?      @db.UnsignedInt
+}
+
+view v_Xqc7k7_pre_booking_items {
+  id                   Int @default(0) @db.UnsignedInt
+  pre_booking_id       Int @db.UnsignedInt
+  product_room_type_id Int @db.UnsignedInt
+  quantity             Int
+}
+
+view v_Xqc7k7_pre_bookings {
+  id                                             Int      @default(0) @db.UnsignedInt
+  supplier_id                                    Int      @db.UnsignedInt
+  product_id                                     Int      @db.UnsignedInt
+  product_tour_code                              String   @db.VarChar(255)
+  period_start_at                                DateTime @db.Date
+  period_end_at                                  DateTime @db.Date
+  pre_booking_key                                String   @db.Char(10)
+  product_pool_snapshot                          Json
+  customer_name                                  String   @db.VarChar(200)
+  customer_phone_number                          String?  @db.VarChar(10)
+  customer_remark                                String?  @db.VarChar(500)
+  customer_url_path                              String?  @db.VarChar(100)
+  allow_tw_website_to_display_quantity_remaining Boolean  @default(true)
+  created_at                                     DateTime @db.DateTime(0)
+  created_by_agency_member_id                    Int      @db.UnsignedInt
+  expiry_at                                      DateTime @db.DateTime(0)
+}
+
+view v_Xqc7k7_pre_product_data_generation_jobs {
+  id         Int       @default(0) @db.UnsignedInt
+  status     String    @db.VarChar(20)
+  detail     Json?
+  started_at DateTime? @db.DateTime(0)
+  ended_at   DateTime? @db.DateTime(0)
+  time_used  Decimal?  @db.Decimal(10, 5)
+  created_at DateTime  @db.DateTime(0)
+}
+
+view v_Xqc7k7_pre_product_data_generation_logs {
+  id                                 Int       @default(0) @db.UnsignedInt
+  pre_product_data_generation_job_id Int       @db.UnsignedInt
+  status                             String    @db.VarChar(20)
+  description                        String    @db.VarChar(100)
+  detail                             Json?
+  started_at                         DateTime? @db.DateTime(0)
+  ended_at                           DateTime? @db.DateTime(0)
+  time_used                          Decimal?  @db.Decimal(10, 5)
+}
+
+view v_Xqc7k7_pre_product_data_update_jobs {
+  id         Int       @default(0) @db.UnsignedInt
+  status     String    @db.VarChar(20)
+  detail     Json?
+  started_at DateTime? @db.DateTime(0)
+  ended_at   DateTime? @db.DateTime(0)
+  time_used  Decimal?  @db.Decimal(10, 5)
+  created_at DateTime  @db.DateTime(0)
+}
+
+view v_Xqc7k7_pre_product_data_update_logs {
+  id                             Int       @default(0) @db.UnsignedInt
+  pre_product_data_update_job_id Int       @db.UnsignedInt
+  status                         String    @db.VarChar(20)
+  description                    String    @db.VarChar(100)
+  detail                         Json?
+  api_url                        String?   @db.VarChar(255)
+  api_headers                    Json?
+  api_request_body               Json?
+  api_response_body              Json?
+  second_api_url                 String?   @db.VarChar(255)
+  second_api_headers             Json?
+  second_api_request_body        Json?
+  second_api_response_body       Json?
+  started_at                     DateTime? @db.DateTime(0)
+  ended_at                       DateTime? @db.DateTime(0)
+  time_used                      Decimal?  @db.Decimal(10, 5)
+}
+
+view v_Xqc7k7_pre_product_file_reports {
+  id                        Int      @default(0) @db.UnsignedInt
+  name                      String   @db.VarChar(100)
+  pre_product_thumbnail_url String   @db.VarChar(200)
+  file_count                Int      @db.UnsignedInt
+  first_banner_count        Int      @db.UnsignedInt
+  after_first_banner_count  Int      @db.UnsignedInt
+  day_detail_count          Int      @db.UnsignedInt
+  last_file_created_at      DateTime @db.DateTime(0)
+  created_at                DateTime @db.DateTime(0)
+}
+
+view v_Xqc7k7_pre_product_file_reports_has_countries {
+  pre_product_file_report_id Int @db.UnsignedInt
+  country_id                 Int @db.UnsignedInt
+}
+
+view v_Xqc7k7_pre_product_file_reports_has_pre_product_files {
+  pre_product_file_report_id Int @db.UnsignedInt
+  pre_product_file_id        Int @db.UnsignedInt
+}
+
+view v_Xqc7k7_pre_product_files {
+  id                          Int       @default(0) @db.UnsignedInt
+  pre_product_id              Int?      @db.UnsignedInt
+  ordinal                     Int
+  slug                        String    @db.Char(10)
+  item_file_name              String    @db.VarChar(100)
+  item_file_size              Int
+  item_content_type           String    @db.VarChar(20)
+  item_updated_at             DateTime  @db.DateTime(0)
+  created_at                  DateTime  @db.DateTime(0)
+  created_by_agency_member_id Int?      @db.UnsignedInt
+  updated_at                  DateTime  @db.DateTime(0)
+  updated_by_agency_member_id Int?      @db.UnsignedInt
+  deleted_at                  DateTime? @db.DateTime(0)
+}
+
+view v_Xqc7k7_pre_products {
+  id                                          Int       @default(0) @db.UnsignedInt
+  supplier_id                                 Int       @db.UnsignedInt
+  product_tour_code                           String    @db.VarChar(50)
+  product_status                              String?   @db.Char(30)
+  product_name                                String    @db.VarChar(200)
+  product_name_by_system                      String?   @db.VarChar(200)
+  product_countries                           Json?
+  product_country_sub_units                   Json?
+  product_duration_day                        Int
+  product_duration_night                      Int
+  product_duration_day_and_night              String    @db.VarChar(10)
+  product_free_day                            Int?
+  product_meal_amount                         Int?
+  product_has_meal_on_board                   Boolean?
+  product_hotel_star                          Int?
+  product_day_detail                          Json?
+  product_landmark_highlight                  Json?
+  product_day_highlight                       Json?
+  product_highlight                           String?   @db.VarChar(500)
+  product_pdf_url                             String    @db.VarChar(200)
+  product_word_url                            String    @db.VarChar(200)
+  product_url                                 String    @db.VarChar(200)
+  product_is_active                           Boolean
+  period_transportation_code                  String?   @db.Char(3)
+  period_start_at                             DateTime  @db.Date
+  period_end_at                               DateTime  @db.Date
+  period_price_adult_double                   Decimal?  @db.Decimal(10, 2)
+  period_deposit                              Decimal?  @db.Decimal(10, 2)
+  period_commission                           Decimal?  @db.Decimal(10, 2)
+  period_commission_company                   Decimal?  @db.Decimal(10, 2)
+  period_commission_seller                    Decimal?  @db.Decimal(10, 2)
+  period_quantity                             Int
+  period_quantity_remaining                   Int
+  period_go_airport_arrival_1                 String?   @db.VarChar(100)
+  period_go_airport_arrival_2                 String?   @db.VarChar(100)
+  period_go_airport_departure_1               String?   @db.VarChar(100)
+  period_go_airport_departure_2               String?   @db.VarChar(100)
+  period_go_flight_number_departure_1         String?   @db.VarChar(50)
+  period_go_flight_number_departure_2         String?   @db.VarChar(50)
+  period_go_flight_time_arrival_1             String?   @db.VarChar(50)
+  period_go_flight_time_arrival_2             String?   @db.VarChar(50)
+  period_go_flight_time_departure_1           String?   @db.VarChar(50)
+  period_go_flight_time_departure_2           String?   @db.VarChar(50)
+  period_back_airport_arrival_1               String?   @db.VarChar(100)
+  period_back_airport_arrival_2               String?   @db.VarChar(100)
+  period_back_airport_departure_1             String?   @db.VarChar(100)
+  period_back_airport_departure_2             String?   @db.VarChar(100)
+  period_back_flight_number_departure_1       String?   @db.VarChar(50)
+  period_back_flight_number_departure_2       String?   @db.VarChar(50)
+  period_back_flight_time_arrival_1           String?   @db.VarChar(50)
+  period_back_flight_time_arrival_2           String?   @db.VarChar(50)
+  period_back_flight_time_departure_1         String?   @db.VarChar(50)
+  period_back_flight_time_departure_2         String?   @db.VarChar(50)
+  count_period                                Int
+  original_data                               Json
+  created_at                                  DateTime  @db.DateTime(0)
+  updated_at                                  DateTime  @db.DateTime(0)
+  updated_by_agency_member_id                 Int?      @db.UnsignedInt
+  waiting_ai_to_fill_data_at                  DateTime? @db.DateTime(0)
+  waiting_ai_to_fill_data_by_agency_member_id Int?      @db.UnsignedInt
+  pending_review_at                           DateTime? @db.DateTime(0)
+  pending_review_by_agency_member_id          Int?      @db.UnsignedInt
+  waiting_approval_at                         DateTime? @db.DateTime(0)
+  waiting_approval_by_agency_member_id        Int?      @db.UnsignedInt
+  approval_at                                 DateTime? @db.DateTime(0)
+  approval_by_agency_member_id                Int?      @db.UnsignedInt
+}
+
+view v_Xqc7k7_product_pool_config_files {
+  id                          Int       @default(0) @db.UnsignedInt
+  item_file_name              String?   @db.VarChar(100)
+  item_file_size              Int?
+  item_content_type           String?   @db.VarChar(20)
+  item_updated_at             DateTime? @db.DateTime(0)
+  created_at                  DateTime  @db.DateTime(0)
+  created_by_agency_member_id Int       @db.UnsignedInt
+  updated_at                  DateTime  @db.DateTime(0)
+  updated_by_agency_member_id Int       @db.UnsignedInt
+  deleted_at                  DateTime? @db.DateTime(0)
+  deleted_by_agency_member_id Int?      @db.UnsignedInt
+}
+
+view v_Xqc7k7_product_pool_config_has_product_pools {
+  product_pool_id        Int @db.UnsignedInt
+  product_pool_config_id Int @db.UnsignedInt
+}
+
+view v_Xqc7k7_product_pool_configs {
+  id                                         Int       @default(0) @db.UnsignedInt
+  product_tour_code                          String    @db.VarChar(255)
+  period_start_at                            DateTime  @db.Date
+  period_end_at                              DateTime  @db.Date
+  product_main_country_id                    Int       @db.UnsignedInt
+  product_main_country_name_th               String    @db.VarChar(100)
+  product_main_country_name_en               String    @db.VarChar(100)
+  product_country_sub_units                  Json
+  product_id                                 Int       @db.UnsignedInt
+  period_id                                  Int       @db.UnsignedInt
+  supplier_id                                Int       @db.UnsignedInt
+  product_config_file_id                     Int?      @db.UnsignedInt
+  period_quantity_remaining                  Int?
+  status                                     String    @db.VarChar(50)
+  product_banner_url                         String?   @db.VarChar(255)
+  product_name                               String?   @db.VarChar(255)
+  product_hilight_description                String?   @db.VarChar(500)
+  period_price_adult_double                  Decimal?  @db.Decimal(10, 2)
+  period_price_adult_double_compare          Decimal?  @db.Decimal(10, 2)
+  period_deal                                Boolean?
+  period_commission_company                  Decimal?  @db.Decimal(10, 2)
+  period_commission_seller                   Decimal?  @db.Decimal(10, 2)
+  period_is_active                           Boolean   @default(false)
+  original_product_banner_url                String?   @db.VarChar(255)
+  original_product_name                      String    @db.VarChar(255)
+  original_product_hilight_description       String?   @db.VarChar(500)
+  original_period_price_adult_double         Decimal?  @db.Decimal(10, 2)
+  original_period_price_adult_double_compare Decimal?  @db.Decimal(10, 2)
+  original_period_deal                       Boolean   @default(false)
+  original_period_commission_company         Decimal?  @db.Decimal(10, 2)
+  original_period_commission_seller          Decimal?  @db.Decimal(10, 2)
+  created_at                                 DateTime  @db.DateTime(0)
+  updated_at                                 DateTime  @db.DateTime(0)
+  configured_at                              DateTime? @db.DateTime(0)
+}
+
+view v_Xqc7k7_product_pool_data_generation_jobs {
+  id         Int       @default(0) @db.UnsignedInt
+  status     String    @db.VarChar(20)
+  detail     Json?
+  started_at DateTime? @db.DateTime(0)
+  ended_at   DateTime? @db.DateTime(0)
+  time_used  Decimal?  @db.Decimal(10, 5)
+  created_at DateTime  @db.DateTime(0)
+}
+
+view v_Xqc7k7_product_pool_data_generation_logs {
+  id                                  Int       @default(0) @db.UnsignedInt
+  product_pool_data_generation_job_id Int       @db.UnsignedInt
+  status                              String    @db.VarChar(20)
+  description                         String    @db.VarChar(100)
+  detail                              Json?
+  started_at                          DateTime? @db.DateTime(0)
+  ended_at                            DateTime? @db.DateTime(0)
+  time_used                           Decimal?  @db.Decimal(10, 5)
+
+  @@map("v_Xqc7k7_product_pool_data_generation_logs")
+}
+
+view v_Xqc7k7_product_pool_dates {
+  country_id                Int?     @db.UnsignedInt
+  country_sub_unit_id       Int?     @db.UnsignedInt
+  date                      DateTime @db.Date
+  period_price_adult_double Decimal  @db.Decimal(10, 2)
+  period_quantity_remaining Int
+  created_at                DateTime @db.DateTime(0)
+}
+
+view v_Xqc7k7_product_pools {
+  id                                   Int      @default(0) @db.UnsignedInt
+  supplier_id                          Int      @db.UnsignedInt
+  product_running_id                   Int      @db.UnsignedInt
+  product_id                           Int      @db.UnsignedInt
+  period_id                            Int      @db.UnsignedInt
+  product_sub_category_id              Int      @db.UnsignedInt
+  product_tour_code                    String   @db.VarChar(50)
+  product_tourwow_code                 String   @db.VarChar(50)
+  product_tw_url_path                  String   @db.VarChar(200)
+  product_name                         String   @db.VarChar(200)
+  product_start_at                     DateTime @db.Date
+  product_price                        Decimal  @db.Decimal(10, 2)
+  product_price_compare                Decimal? @db.Decimal(10, 2)
+  product_has_one_country              Boolean
+  product_main_country_id              Int      @db.UnsignedInt
+  product_main_country_name_th         String   @db.VarChar(100)
+  product_main_country_name_en         String   @db.VarChar(100)
+  product_countries                    Json
+  product_country_sub_units            Json
+  product_tags                         String   @db.LongText
+  product_tags_json                    Json?
+  product_duration_day                 Int
+  product_duration_night               Int
+  product_duration_day_and_night       String   @db.VarChar(10)
+  product_free_day                     Int?
+  product_meal_amount                  Int?
+  product_hotel_star                   Int?
+  product_has_visa                     Boolean
+  product_visa_price                   Decimal? @db.Decimal(10, 2)
+  product_hilight_description          String?  @db.VarChar(500)
+  product_sub_category_label           String   @db.VarChar(100)
+  product_banner_url                   String?  @db.VarChar(200)
+  product_has_active_periods           Boolean
+  product_is_recommended               Boolean
+  period_group_code                    String?  @db.VarChar(50)
+  period_start_at                      DateTime @db.Date
+  period_end_at                        DateTime @db.Date
+  period_is_channel_twp_online_booking Boolean
+  period_price_adult_double            Decimal? @db.Decimal(10, 2)
+  period_price_adult_single            Decimal? @db.Decimal(10, 2)
+  period_price_adult_tripple           Decimal? @db.Decimal(10, 2)
+  period_price_child_no_bed            Decimal? @db.Decimal(10, 2)
+  period_price_child_bed               Decimal? @db.Decimal(10, 2)
+  period_price_infant                  Decimal? @db.Decimal(10, 2)
+  period_price_join_land               Decimal? @db.Decimal(10, 2)
+  period_price_adult_double_compare    Decimal? @db.Decimal(10, 2)
+  period_price_adult_single_compare    Decimal? @db.Decimal(10, 2)
+  period_price_adult_tripple_compare   Decimal? @db.Decimal(10, 2)
+  period_price_child_no_bed_compare    Decimal? @db.Decimal(10, 2)
+  period_price_child_bed_compare       Decimal? @db.Decimal(10, 2)
+  period_price_infant_compare          Decimal? @db.Decimal(10, 2)
+  period_price_join_land_compare       Decimal? @db.Decimal(10, 2)
+  period_deposit                       Decimal? @db.Decimal(10, 2)
+  period_commission                    Decimal? @db.Decimal(10, 2)
+  period_commission_company            Decimal? @db.Decimal(10, 2)
+  period_commission_seller             Decimal? @db.Decimal(10, 2)
+  period_quantity                      Int
+  period_quantity_remaining            Int
+  period_sell_status_code              Int      @db.TinyInt
+  period_is_active                     Boolean
+  period_deal                          Boolean  @default(false)
+  period_config                        Boolean  @default(false)
+  period_installment_count             Int      @db.UnsignedInt
+  period_transportation_category_id    Int?     @db.UnsignedInt
+  period_transportation_category_name  String?  @db.VarChar(50)
+  period_go_transportation_id          Int?     @db.UnsignedInt
+  period_go_transportation_name_en     String?  @db.VarChar(200)
+  period_go_transportation_code        String?  @db.VarChar(5)
+  period_go_airport_arrival            String?  @db.VarChar(100)
+  period_go_airport_departure          String?  @db.VarChar(100)
+  period_go_flight_number_arrival      String?  @db.VarChar(50)
+  period_go_flight_number_departure    String?  @db.VarChar(50)
+  period_go_flight_time_arrival        String?  @db.VarChar(50)
+  period_go_flight_time_departure      String?  @db.VarChar(50)
+  period_back_transportation_id        Int?     @db.UnsignedInt
+  period_back_transportation_name_en   String?  @db.VarChar(200)
+  period_back_transportation_code      String?  @db.VarChar(5)
+  period_back_airport_arrival          String?  @db.VarChar(100)
+  period_back_airport_departure        String?  @db.VarChar(100)
+  period_back_flight_number_arrival    String?  @db.VarChar(50)
+  period_back_flight_number_departure  String?  @db.VarChar(50)
+  period_back_flight_time_arrival      String?  @db.VarChar(50)
+  period_back_flight_time_departure    String?  @db.VarChar(50)
+  created_at                           DateTime @db.DateTime(0)
+}
+
+view v_Xqc7k7_promotion_page_config_files {
+  id                       Int       @default(0) @db.UnsignedInt
+  promotion_page_config_id Int?      @db.UnsignedInt
+  slug                     String    @db.Char(40)
+  item_file_name           String?   @db.VarChar(100)
+  item_file_size           Int?
+  item_content_type        String?   @db.VarChar(20)
+  item_updated_at          DateTime? @db.DateTime(0)
+}
+
+view v_Xqc7k7_promotion_page_configs {
+  id                           Int       @default(0) @db.UnsignedInt
+  name                         String    @db.VarChar(500)
+  remark                       String    @db.VarChar(500)
+  slug                         String    @db.VarChar(200)
+  promotion_type               String    @db.Char(20)
+  seo_title                    String?   @db.VarChar(200)
+  seo_h1                       String?   @db.VarChar(200)
+  seo_primary_keyword          String?   @db.VarChar(200)
+  seo_secondary_keyword        String?   @db.VarChar(200)
+  seo_meta_description         String?   @db.VarChar(200)
+  promotion_start_at           DateTime? @db.DateTime(0)
+  promotion_end_at             DateTime? @db.DateTime(0)
+  banner_before_promotion_alt  String?   @db.VarChar(500)
+  banner_before_promotion_url  String?   @db.VarChar(500)
+  banner_on_promotion_alt      String?   @db.VarChar(500)
+  banner_on_promotion_url      String?   @db.VarChar(500)
+  banner_after_promotion_alt   String?   @db.VarChar(500)
+  banner_after_promotion_url   String?   @db.VarChar(500)
+  special_banner_promotion_alt String?   @db.VarChar(500)
+  special_banner_promotion_url String?   @db.VarChar(500)
+  article_content              String?   @db.LongText
+  created_at                   DateTime  @db.DateTime(0)
+  created_by_agency_member_id  Int       @db.UnsignedInt
+  updated_at                   DateTime  @db.DateTime(0)
+  updated_by_agency_member_id  Int       @db.UnsignedInt
+}
+
+view v_Xqc7k7_prompt_configs {
+  id                           Int      @default(0) @db.UnsignedInt
+  ordinal                      Int      @db.UnsignedInt
+  type                         String   @db.VarChar(10)
+  name                         String   @db.VarChar(100)
+  description                  String?  @db.VarChar(50)
+  api_url                      String   @db.VarChar(255)
+  api_headers                  Json?
+  api_request_body             Json?
+  api_request_body_source      String   @db.VarChar(50)
+  api_response_path            String   @db.VarChar(50)
+  is_active                    Int      @db.TinyInt
+  created_at                   DateTime @db.DateTime(0)
+  created_by_agency_members_id Int?     @db.UnsignedInt
+  updated_at                   DateTime @db.DateTime(0)
+  updated_by_agency_members_id Int?     @db.UnsignedInt
+}
+
+view v_Xqc7k7_sitemap_files {
+  id                Int       @default(0) @db.UnsignedInt
+  item_file_name    String?   @db.VarChar(100)
+  item_file_size    Int?
+  item_content_type String?   @db.VarChar(20)
+  item_updated_at   DateTime? @db.DateTime(0)
+}
+
+view v_Xqc7k7_sitemaps {
+  id                          Int       @default(0) @db.UnsignedInt
+  sitemap_file_id             Int       @db.UnsignedInt
+  name                        String    @db.VarChar(100)
+  use_prority_of_tw_page_type Int       @default(0) @db.TinyInt
+  created_at                  DateTime  @db.DateTime(0)
+  created_by_agency_member_id Int       @db.UnsignedInt
+  updated_at                  DateTime  @db.DateTime(0)
+  updated_by_agency_member_id Int       @db.UnsignedInt
+  deleted_at                  DateTime? @db.DateTime(0)
+  deleted_by_agency_member_id Int?      @db.UnsignedInt
+}
+
+view v_Xqc7k7_supplier_order_installment_files {
+  id                            Int       @default(0) @db.UnsignedInt
+  supplier_order_installment_id Int       @db.UnsignedInt
+  order_id                      Int       @db.UnsignedInt
+  item_file_name                String?   @db.VarChar(100)
+  item_file_size                Int?
+  item_content_type             String?   @db.VarChar(20)
+  item_updated_at               DateTime? @db.DateTime(0)
+  issued_at                     DateTime? @db.DateTime(0)
+  amount                        Decimal?  @db.Decimal(10, 2)
+  fee                           Decimal   @default(0.00) @db.Decimal(10, 2)
+  withholding_tax               Decimal?  @db.Decimal(10, 2)
+  bank_id                       Int?      @db.UnsignedInt
+  created_at                    DateTime  @db.DateTime(0)
+  created_by_agency_member_id   Int       @db.UnsignedInt
+  updated_at                    DateTime  @db.DateTime(0)
+  updated_by_agency_member_id   Int       @db.UnsignedInt
+  deleted_at                    DateTime? @db.DateTime(0)
+  deleted_by_agency_member_id   Int?      @db.UnsignedInt
+  file_type_slug                String    @db.VarChar(30)
+}
+
+view v_Xqc7k7_supplier_order_installments {
+  id                          Int       @default(0) @db.UnsignedInt
+  order_id                    Int       @db.UnsignedInt
+  ordinal                     Int       @db.UnsignedInt
+  status                      String    @db.Char(20)
+  due_date                    DateTime? @db.DateTime(0)
+  original_due_date           DateTime? @db.Date
+  amount                      Decimal   @db.Decimal(13, 5)
+  created_at                  DateTime  @db.DateTime(0)
+  created_by_agency_member_id Int?      @db.UnsignedInt
+  updated_at                  DateTime  @db.DateTime(0)
+  updated_by_agency_member_id Int?      @db.UnsignedInt
+  deleted_at                  DateTime? @db.DateTime(0)
+  deleted_by_agency_member_id Int?      @db.UnsignedInt
+}
+
+view v_Xqc7k7_supplier_order_receipts {
+  id                                      Int      @default(0) @db.UnsignedInt
+  order_id                                Int      @db.UnsignedInt
+  order_reference_code                    String   @db.Char(20)
+  supplier_reference_code                 String?  @db.VarChar(20)
+  receipt_code                            String   @db.Char(20)
+  receipt_date                            DateTime @db.Date
+  tw_name                                 String   @db.VarChar(200)
+  tw_tax_id                               String   @db.VarChar(20)
+  tw_address                              String   @db.VarChar(255)
+  supplier_use_withholding_tax            Boolean
+  supplier_name                           String   @db.VarChar(200)
+  supplier_tax_id                         String   @db.VarChar(20)
+  supplier_address                        String?  @db.VarChar(255)
+  supplier_commission_quantity            Int?
+  supplier_commission_per_unit            Decimal? @db.Decimal(10, 2)
+  supplier_commission_discount            Decimal? @db.Decimal(10, 2)
+  supplier_commission                     Decimal? @db.Decimal(10, 2)
+  supplier_commission_without_vat_and_tax Decimal? @db.Decimal(10, 2)
+  supplier_commission_with_vat            Decimal  @db.Decimal(10, 2)
+  supplier_commission_tax                 Decimal  @db.Decimal(10, 2)
+  supplier_commission_vat                 Decimal  @db.Decimal(10, 2)
+  tw_ticket_quantity                      Int?
+  tw_ticket_per_unit                      Decimal? @db.Decimal(10, 2)
+  tw_ticket_discount                      Decimal? @db.Decimal(10, 2)
+  tw_ticket                               Decimal? @db.Decimal(10, 2)
+  tw_service_quantity                     Int?
+  tw_service_per_unit                     Decimal? @db.Decimal(10, 2)
+  tw_service_discount                     Decimal? @db.Decimal(10, 2)
+  tw_service                              Decimal? @db.Decimal(10, 2)
+  net_amount                              Decimal  @db.Decimal(10, 2)
+  net_amount_thai_text                    String   @db.VarChar(255)
+  created_at                              DateTime @db.DateTime(0)
+  created_by_agency_member_id             Int      @db.UnsignedInt
+  updated_at                              DateTime @db.DateTime(0)
+  updated_by_agency_member_id             Int      @db.UnsignedInt
+}
+
+view v_Xqc7k7_surveys {
+  id                          Int       @default(0) @db.UnsignedInt
+  survey_by_agency_member_id  Int       @db.UnsignedInt
+  survey_topic                String    @db.VarChar(500)
+  customer_url_path           String    @db.VarChar(100)
+  customer_chat_url           String    @db.VarChar(500)
+  customer_answer_1           String?   @db.VarChar(500)
+  customer_answer_2           String?   @db.VarChar(500)
+  customer_answer_3           String?   @db.VarChar(500)
+  customer_answer_4           String?   @db.VarChar(500)
+  customer_answer_5           String?   @db.VarChar(500)
+  customer_answer_6           String?   @db.VarChar(500)
+  customer_answer_7           String?   @db.VarChar(500)
+  customer_answer_8           String?   @db.VarChar(500)
+  customer_answer_9           String?   @db.VarChar(500)
+  customer_answer_10          String?   @db.VarChar(500)
+  customer_answer_11          String?   @db.VarChar(500)
+  customer_answer_12          String?   @db.VarChar(500)
+  customer_answer_13          String?   @db.VarChar(500)
+  customer_answer_14          String?   @db.VarChar(500)
+  customer_answer_15          String?   @db.VarChar(500)
+  customer_answer_16          String?   @db.VarChar(500)
+  customer_answer_17          String?   @db.VarChar(500)
+  customer_answer_18          String?   @db.VarChar(500)
+  customer_answer_19          String?   @db.VarChar(500)
+  customer_answer_20          String?   @db.VarChar(500)
+  customer_ip_address         String?   @db.VarChar(100)
+  customer_has_submitted      Int       @default(0) @db.TinyInt
+  customer_submitted_at       DateTime? @db.DateTime(0)
+  created_at                  DateTime  @db.DateTime(0)
+  created_by_agency_member_id Int       @db.UnsignedInt
+  updated_at                  DateTime  @db.DateTime(0)
+  updated_by_agency_member_id Int?      @db.UnsignedInt
+}
+
+view v_Xqc7k7_task_types {
+  id                          Int     @default(0) @db.UnsignedInt
+  name                        String  @db.VarChar(100)
+  default_date_source         String? @db.VarChar(50)
+  default_date_source_ordinal Int?
+  default_date_offset         Int?
+  for_roles                   Json
+  is_supplement               Boolean @default(false)
+  ordinal                     Int     @db.UnsignedInt
+  can_have_time               Boolean @default(false)
+  can_have_airport            Boolean @default(false)
+  can_have_meeting_point      Boolean @default(false)
+}
+
+view v_Xqc7k7_tasks {
+  id                            Int       @default(0) @db.UnsignedInt
+  agency_id                     Int       @db.UnsignedInt
+  task_type_id                  Int       @db.UnsignedInt
+  order_id                      Int       @db.UnsignedInt
+  order_code                    String    @db.VarChar(20)
+  order_seller_agency_member_id Int       @db.UnsignedInt
+  order_created_at              DateTime  @db.DateTime(0)
+  status                        String    @db.Char(20)
+  date                          DateTime  @db.Date
+  time                          DateTime? @db.Time(0)
+  airport_id                    Int?      @db.UnsignedInt
+  meeting_point                 String?   @db.VarChar(50)
+  created_at                    DateTime  @db.DateTime(0)
+  created_by_agency_member_id   Int       @db.UnsignedInt
+  updated_at                    DateTime  @db.DateTime(0)
+  updated_by_agency_member_id   Int       @db.UnsignedInt
+}
+
+view v_Xqc7k7_temp_external_pre_products {
+  id                                          Int       @default(0) @db.UnsignedInt
+  supplier_id                                 Int       @db.UnsignedInt
+  product_tour_code                           String    @db.VarChar(50)
+  product_status                              String?   @db.Char(30)
+  product_name                                String    @db.VarChar(200)
+  product_name_by_system                      String?   @db.VarChar(200)
+  product_countries                           Json?
+  product_country_sub_units                   Json?
+  product_duration_day                        Int
+  product_duration_night                      Int
+  product_duration_day_and_night              String    @db.VarChar(10)
+  product_free_day                            Int?
+  product_meal_amount                         Int?
+  product_has_meal_on_board                   Int?      @db.TinyInt
+  product_hotel_star                          Int?
+  product_day_detail                          Json?
+  product_landmark_highlight                  Json?
+  product_day_highlight                       Json?
+  product_highlight                           String?   @db.VarChar(500)
+  product_pdf_url                             String    @db.VarChar(200)
+  product_word_url                            String    @db.VarChar(200)
+  product_url                                 String    @db.VarChar(200)
+  product_is_active                           Int       @db.TinyInt
+  period_transportation_code                  String?   @db.Char(3)
+  period_start_at                             DateTime  @db.Date
+  period_end_at                               DateTime  @db.Date
+  period_price_adult_double                   Decimal?  @db.Decimal(10, 2)
+  period_deposit                              Decimal?  @db.Decimal(10, 2)
+  period_commission                           Decimal?  @db.Decimal(10, 2)
+  period_commission_company                   Decimal?  @db.Decimal(10, 2)
+  period_commission_seller                    Decimal?  @db.Decimal(10, 2)
+  period_quantity                             Int
+  period_quantity_remaining                   Int
+  period_go_airport_arrival_1                 String?   @db.VarChar(100)
+  period_go_airport_arrival_2                 String?   @db.VarChar(100)
+  period_go_airport_departure_1               String?   @db.VarChar(100)
+  period_go_airport_departure_2               String?   @db.VarChar(100)
+  period_go_flight_number_departure_1         String?   @db.VarChar(50)
+  period_go_flight_number_departure_2         String?   @db.VarChar(50)
+  period_go_flight_time_arrival_1             String?   @db.VarChar(50)
+  period_go_flight_time_arrival_2             String?   @db.VarChar(50)
+  period_go_flight_time_departure_1           String?   @db.VarChar(50)
+  period_go_flight_time_departure_2           String?   @db.VarChar(50)
+  period_back_airport_arrival_1               String?   @db.VarChar(100)
+  period_back_airport_arrival_2               String?   @db.VarChar(100)
+  period_back_airport_departure_1             String?   @db.VarChar(100)
+  period_back_airport_departure_2             String?   @db.VarChar(100)
+  period_back_flight_number_departure_1       String?   @db.VarChar(50)
+  period_back_flight_number_departure_2       String?   @db.VarChar(50)
+  period_back_flight_time_arrival_1           String?   @db.VarChar(50)
+  period_back_flight_time_arrival_2           String?   @db.VarChar(50)
+  period_back_flight_time_departure_1         String?   @db.VarChar(50)
+  period_back_flight_time_departure_2         String?   @db.VarChar(50)
+  count_period                                Int
+  original_data                               Json
+  created_at                                  DateTime  @db.DateTime(0)
+  updated_at                                  DateTime  @db.DateTime(0)
+  updated_by_agency_member_id                 Int?      @db.UnsignedInt
+  waiting_ai_to_fill_data_at                  DateTime? @db.DateTime(0)
+  waiting_ai_to_fill_data_by_agency_member_id Int?      @db.UnsignedInt
+  pending_review_at                           DateTime? @db.DateTime(0)
+  pending_review_by_agency_member_id          Int?      @db.UnsignedInt
+  waiting_approval_at                         DateTime? @db.DateTime(0)
+  waiting_approval_by_agency_member_id        Int?      @db.UnsignedInt
+  approval_at                                 DateTime? @db.DateTime(0)
+  approval_by_agency_member_id                Int?      @db.UnsignedInt
+}
+
+view v_Xqc7k7_temp_external_product_periods {
+  id                                Int      @default(0) @db.UnsignedInt
+  supplier_id                       Int      @db.UnsignedInt
+  product_tour_code                 String   @db.VarChar(50)
+  has_matching_internal_product     Boolean  @default(false)
+  product_country                   Json?
+  product_name                      String?  @db.VarChar(100)
+  period_start_at                   DateTime @db.Date
+  period_end_at                     DateTime @db.Date
+  period_duration                   String   @db.VarChar(10)
+  period_duration_day               Int
+  period_duration_night             Int
+  period_price_adult_double         Decimal  @db.Decimal(10, 2)
+  period_price_adult_double_compare Decimal? @db.Decimal(10, 2)
+  period_commission                 Decimal  @db.Decimal(10, 2)
+  period_commission_company         Decimal  @db.Decimal(10, 2)
+  period_commission_seller          Decimal  @db.Decimal(10, 2)
+  period_quantity_remaining         Int
+  original_data                     Json
+  created_at                        DateTime @db.DateTime(0)
+}
+
+view v_Xqc7k7_temp_product_pools {
+  id                                   Int      @default(0) @db.UnsignedInt
+  supplier_id                          Int      @db.UnsignedInt
+  product_running_id                   Int      @db.UnsignedInt
+  product_id                           Int      @db.UnsignedInt
+  period_id                            Int      @db.UnsignedInt
+  product_sub_category_id              Int      @db.UnsignedInt
+  product_tour_code                    String   @db.VarChar(50)
+  product_tourwow_code                 String   @db.VarChar(50)
+  product_tw_url_path                  String   @db.VarChar(200)
+  product_name                         String   @db.VarChar(200)
+  product_start_at                     DateTime @db.Date
+  product_price                        Decimal  @db.Decimal(10, 2)
+  product_price_compare                Decimal? @db.Decimal(10, 2)
+  product_has_one_country              Boolean
+  product_main_country_id              Int      @db.UnsignedInt
+  product_main_country_name_th         String   @db.VarChar(100)
+  product_main_country_name_en         String   @db.VarChar(100)
+  product_countries                    Json
+  product_country_sub_units            Json
+  product_tags                         String   @db.LongText
+  product_tags_json                    Json?
+  product_duration_day                 Int
+  product_duration_night               Int
+  product_duration_day_and_night       String   @db.VarChar(10)
+  product_free_day                     Int?
+  product_meal_amount                  Int?
+  product_hotel_star                   Int?
+  product_has_visa                     Boolean
+  product_visa_price                   Decimal? @db.Decimal(10, 2)
+  product_hilight_description          String?  @db.VarChar(500)
+  product_sub_category_label           String   @db.VarChar(100)
+  product_banner_url                   String?  @db.VarChar(200)
+  product_has_active_periods           Boolean
+  product_is_recommended               Boolean
+  period_group_code                    String?  @db.VarChar(50)
+  period_start_at                      DateTime @db.Date
+  period_end_at                        DateTime @db.Date
+  period_is_channel_twp_online_booking Boolean
+  period_price_adult_double            Decimal? @db.Decimal(10, 2)
+  period_price_adult_single            Decimal? @db.Decimal(10, 2)
+  period_price_adult_tripple           Decimal? @db.Decimal(10, 2)
+  period_price_child_no_bed            Decimal? @db.Decimal(10, 2)
+  period_price_child_bed               Decimal? @db.Decimal(10, 2)
+  period_price_infant                  Decimal? @db.Decimal(10, 2)
+  period_price_join_land               Decimal? @db.Decimal(10, 2)
+  period_price_adult_double_compare    Decimal? @db.Decimal(10, 2)
+  period_price_adult_single_compare    Decimal? @db.Decimal(10, 2)
+  period_price_adult_tripple_compare   Decimal? @db.Decimal(10, 2)
+  period_price_child_no_bed_compare    Decimal? @db.Decimal(10, 2)
+  period_price_child_bed_compare       Decimal? @db.Decimal(10, 2)
+  period_price_infant_compare          Decimal? @db.Decimal(10, 2)
+  period_price_join_land_compare       Decimal? @db.Decimal(10, 2)
+  period_deposit                       Decimal? @db.Decimal(10, 2)
+  period_commission                    Decimal? @db.Decimal(10, 2)
+  period_commission_company            Decimal? @db.Decimal(10, 2)
+  period_commission_seller             Decimal? @db.Decimal(10, 2)
+  period_quantity                      Int
+  period_quantity_remaining            Int
+  period_sell_status_code              Int      @db.TinyInt
+  period_is_active                     Boolean
+  period_deal                          Boolean  @default(false)
+  period_config                        Boolean  @default(false)
+  period_installment_count             Int      @db.UnsignedInt
+  period_transportation_category_id    Int?     @db.UnsignedInt
+  period_transportation_category_name  String?  @db.VarChar(50)
+  period_go_transportation_id          Int?     @db.UnsignedInt
+  period_go_transportation_name_en     String?  @db.VarChar(200)
+  period_go_transportation_code        String?  @db.VarChar(5)
+  period_go_airport_arrival            String?  @db.VarChar(100)
+  period_go_airport_departure          String?  @db.VarChar(100)
+  period_go_flight_number_arrival      String?  @db.VarChar(50)
+  period_go_flight_number_departure    String?  @db.VarChar(50)
+  period_go_flight_time_arrival        String?  @db.VarChar(50)
+  period_go_flight_time_departure      String?  @db.VarChar(50)
+  period_back_transportation_id        Int?     @db.UnsignedInt
+  period_back_transportation_name_en   String?  @db.VarChar(200)
+  period_back_transportation_code      String?  @db.VarChar(5)
+  period_back_airport_arrival          String?  @db.VarChar(100)
+  period_back_airport_departure        String?  @db.VarChar(100)
+  period_back_flight_number_arrival    String?  @db.VarChar(50)
+  period_back_flight_number_departure  String?  @db.VarChar(50)
+  period_back_flight_time_arrival      String?  @db.VarChar(50)
+  period_back_flight_time_departure    String?  @db.VarChar(50)
+  created_at                           DateTime @db.DateTime(0)
+}
+
+view v_Xqc7k7_touchpoint_date_configs {
+  id                  Int    @default(0) @db.UnsignedInt
+  name                String @db.VarChar(100)
+  default_date_source String @db.VarChar(50)
+}
+
+view v_Xqc7k7_touchpoint_templates {
+  id                                 Int      @default(0) @db.UnsignedInt
+  pipeline_template_id               Int      @db.UnsignedInt
+  touchpoint_date_config_id          Int      @db.UnsignedInt
+  touchpoint_name                    String   @db.VarChar(200)
+  touchpoint_ordinal                 Int      @db.UnsignedInt
+  touchpoint_default_date_source_day Int
+  touchpoint_script_content          String   @db.LongText
+  touchpoint_is_main                 Boolean  @default(false)
+  step_name_1                        String   @db.VarChar(200)
+  step_name_2                        String?  @db.VarChar(200)
+  step_name_3                        String?  @db.VarChar(200)
+  step_name_4                        String?  @db.VarChar(200)
+  step_name_5                        String?  @db.VarChar(200)
+  step_name_6                        String?  @db.VarChar(200)
+  step_name_7                        String?  @db.VarChar(200)
+  step_name_8                        String?  @db.VarChar(200)
+  step_name_9                        String?  @db.VarChar(200)
+  step_name_10                       String?  @db.VarChar(200)
+  created_at                         DateTime @db.DateTime(0)
+  created_by_agency_member_id        Int      @db.UnsignedInt
+  updated_at                         DateTime @db.DateTime(0)
+  updated_by_agency_member_id        Int      @db.UnsignedInt
+}
+
+view v_Xqc7k7_touchpoints {
+  id                          Int       @default(0) @db.UnsignedInt
+  pipeline_id                 Int       @db.UnsignedInt
+  touchpoint_date_config_id   Int       @db.UnsignedInt
+  touchpoint_name             String    @db.VarChar(200)
+  touchpoint_status           String    @db.Char(30)
+  touchpoint_ordinal          Int       @db.UnsignedInt
+  touchpoint_due_date         DateTime  @db.DateTime(0)
+  touchpoint_script_content   String    @db.LongText
+  touchpoint_note             String?   @db.VarChar(500)
+  touchpoint_is_main          Boolean   @default(false)
+  step_name_1                 String    @db.VarChar(200)
+  step_name_2                 String?   @db.VarChar(200)
+  step_name_3                 String?   @db.VarChar(200)
+  step_name_4                 String?   @db.VarChar(200)
+  step_name_5                 String?   @db.VarChar(200)
+  step_name_6                 String?   @db.VarChar(200)
+  step_name_7                 String?   @db.VarChar(200)
+  step_name_8                 String?   @db.VarChar(200)
+  step_name_9                 String?   @db.VarChar(200)
+  step_name_10                String?   @db.VarChar(200)
+  created_at                  DateTime  @db.DateTime(0)
+  created_by_agency_member_id Int?      @db.UnsignedInt
+  updated_at                  DateTime  @db.DateTime(0)
+  updated_by_agency_member_id Int?      @db.UnsignedInt
+  deleted_at                  DateTime? @db.DateTime(0)
+  deleted_by_agency_member_id Int?      @db.UnsignedInt
+}
+
+view v_Xqc7k7_tourwow_lucky_draw {
+  id                    Int      @default(0) @db.UnsignedInt
+  name                  String   @db.VarChar(100)
+  phone_number          String   @db.VarChar(15)
+  channel_slug          String   @db.VarChar(25)
+  frequency_travel_slug String   @db.VarChar(25)
+  country_id            Int      @db.UnsignedInt
+  created_at            DateTime @db.DateTime(0)
+}
+
+view v_Xqc7k7_tourwow_payment_event_files {
+  id                          Int       @default(0) @db.UnsignedInt
+  tourwow_payment_event_id    Int?      @db.UnsignedInt
+  item_file_name              String?   @db.VarChar(100)
+  item_file_size              Int?
+  item_content_type           String?   @db.VarChar(20)
+  item_updated_at             DateTime? @db.DateTime(0)
+  created_at                  DateTime  @db.DateTime(0)
+  created_by_agency_member_id Int       @db.UnsignedInt
+  updated_at                  DateTime  @db.DateTime(0)
+  updated_by_agency_member_id Int       @db.UnsignedInt
+  deleted_at                  DateTime? @db.DateTime(0)
+  deleted_by_agency_member_id Int?      @db.UnsignedInt
+}
+
+view v_Xqc7k7_tourwow_payment_events {
+  id                            Int      @default(0) @db.UnsignedInt
+  payment_id                    Int      @db.UnsignedInt
+  parent_payment_event_id       Int?     @db.UnsignedInt
+  event_type                    String   @db.VarChar(40)
+  amount                        Decimal  @db.Decimal(10, 2)
+  issued_at                     DateTime @db.DateTime(0)
+  remark                        String?  @db.VarChar(500)
+  customer_order_installment_id Int      @db.UnsignedInt
+  created_by_agency_member_id   Int      @db.UnsignedInt
+  created_at                    DateTime @db.DateTime(0)
+}
+
+view v_Xqc7k7_tw_tags {
+  id                          Int      @default(0) @db.UnsignedInt
+  pro_product_id              Int      @db.UnsignedInt
+  display_name                String?  @db.VarChar(100)
+  created_at                  DateTime @db.DateTime(0)
+  created_by_supplier_user_id Int?     @db.UnsignedInt
+}

@@ -1,0 +1,28 @@
+SELECT
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`id` AS `id`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`name` AS `name`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`remark` AS `remark`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`slug` AS `slug`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`promotion_type` AS `promotion_type`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`seo_title` AS `seo_title`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`seo_h1` AS `seo_h1`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`seo_primary_keyword` AS `seo_primary_keyword`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`seo_secondary_keyword` AS `seo_secondary_keyword`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`seo_meta_description` AS `seo_meta_description`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`promotion_start_at` AS `promotion_start_at`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`promotion_end_at` AS `promotion_end_at`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`banner_before_promotion_alt` AS `banner_before_promotion_alt`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`banner_before_promotion_url` AS `banner_before_promotion_url`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`banner_on_promotion_alt` AS `banner_on_promotion_alt`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`banner_on_promotion_url` AS `banner_on_promotion_url`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`banner_after_promotion_alt` AS `banner_after_promotion_alt`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`banner_after_promotion_url` AS `banner_after_promotion_url`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`special_banner_promotion_alt` AS `special_banner_promotion_alt`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`special_banner_promotion_url` AS `special_banner_promotion_url`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`article_content` AS `article_content`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`created_at` AS `created_at`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`created_by_agency_member_id` AS `created_by_agency_member_id`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`updated_at` AS `updated_at`,
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`.`updated_by_agency_member_id` AS `updated_by_agency_member_id`
+FROM
+  `tw_tourwow_db`.`Xqc7k7_promotion_page_configs`
